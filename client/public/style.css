@@ -55,6 +55,7 @@ body {
 
 #title {
   margin-top: 4vh;
+  margin-bottom: 3vh;
   font-size: 3vh;
   text-align: center;
   letter-spacing: 1vh;
@@ -62,4 +63,47 @@ body {
 #title h2 {
   font-size: 2.9vh;
   letter-spacing: 0.6vh;
+}
+
+#char-properties {
+  border: 0.1px;
+  border-color: rgb(202, 202, 202);
+  border-style: solid;
+  width: 60vw;
+  margin-left: 8vh;
+  font-size: 2.6vh;
+  font-weight: bold;
+}
+
+#name {
+  margin-bottom: 3vh;
+  font-size: 2.9vh;
+  height: 5vh;
+}
+
+#name #first {
+  padding-left: 2vh;
+  height: 5vh;
+  width: 20vw;
+  float: left;
+  border: 0.3px;
+  border-color: rgb(202, 202, 202);
+  border-style: solid;
+}
+#name #second {
+  height: 5vh;
+  width: 39.8vw;
+  float: right;
+  overflow: hidden;
+  border: 0.3px;
+  border-color: rgb(202, 202, 202);
+  border-style: solid;
+  padding-left: 2vh;
+  font-size: 3.1vh;
+  font-weight: bolder;
+}
+#name #second::placeholder {
+  font-size: 2.9vh;
+  font-weight: normal;
+  text-align: center;
 }
