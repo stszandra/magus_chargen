@@ -75,13 +75,9 @@ body {
   font-weight: bold;
 }
 
-#name {
-  margin-bottom: 3vh;
+.first {
+  margin-bottom: 1vh;
   font-size: 2.9vh;
-  height: 5vh;
-}
-
-#name #first {
   padding-left: 2vh;
   height: 5vh;
   width: 20vw;
@@ -90,7 +86,12 @@ body {
   border-color: rgb(202, 202, 202);
   border-style: solid;
 }
-#name #second {
+
+.second {
+  margin-bottom: 1vh;
+  font-size: 2.9vh;
+  font-weight: normal;
+  text-align: center;
   height: 5vh;
   width: 39.8vw;
   float: right;
@@ -99,11 +100,18 @@ body {
   border-color: rgb(202, 202, 202);
   border-style: solid;
   padding-left: 2vh;
+}
+
+#name-first,
+#name-second {
+  margin-bottom: 3vh;
+}
+
+#name-second {
   font-size: 3.1vh;
   font-weight: bolder;
 }
-#name #second::placeholder {
-  font-size: 2.9vh;
+
+#name-second::placeholder {
   font-weight: normal;
-  text-align: center;
 }
