@@ -75,33 +75,6 @@ body {
   font-weight: bold;
 }
 
-.first {
-  margin-bottom: 1vh;
-  font-size: 2.9vh;
-  padding-left: 2vh;
-  height: 5vh;
-  width: 20vw;
-  float: left;
-  border: 0.3px;
-  border-color: rgb(202, 202, 202);
-  border-style: solid;
-}
-
-.second {
-  margin-bottom: 1vh;
-  font-size: 2.9vh;
-  font-weight: normal;
-  text-align: center;
-  height: 5vh;
-  width: 39.8vw;
-  float: right;
-  overflow: hidden;
-  border: 0.3px;
-  border-color: rgb(202, 202, 202);
-  border-style: solid;
-  padding-left: 2vh;
-}
-
 #name-first,
 #name-second {
   margin-bottom: 3vh;
@@ -110,8 +83,51 @@ body {
 #name-second {
   font-size: 3.1vh;
   font-weight: bolder;
+  width: 44.8vw;
 }
 
 #name-second::placeholder {
   font-weight: normal;
+}
+
+.first {
+  margin-bottom: 0.8vh;
+  padding-left: 2vh;
+  font-size: 2.9vh;
+  height: 5vh;
+  width: 15vw;
+  float: left;
+  border: 0.3px;
+  border-color: rgb(202, 202, 202);
+  border-style: solid;
+}
+
+.second {
+  margin-bottom: 0.8vh;
+  padding-left: 2vh;
+  font-size: 2.9vh;
+  font-weight: normal;
+  text-align: center;
+  height: 5vh;
+  width: 34.8vw;
+  float: none;
+  overflow: hidden;
+  border: 0.3px;
+  border-color: rgb(202, 202, 202);
+  border-style: solid;
+}
+
+.infoButton {
+  margin-bottom: 0.8vh;
+  padding-left: 0.2vh;
+  font-size: 2.9vh;
+  font-weight: normal;
+  text-align: center;
+  height: 5vh;
+  width: 10vw;
+  float: right;
+  overflow: hidden;
+  border: 0.3px;
+  border-color: rgb(202, 202, 202);
+  border-style: solid;
 }
