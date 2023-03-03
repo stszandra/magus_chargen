@@ -53,12 +53,6 @@ body {
   font-family: "Papyrus", "fantasy";
 }
 
-.ui-autocomplete.ui-widget {
-  font-family: "Papyrus", "fantasy";
-  font-size: 2.9vh;
-  text-align: center;
-}
-
 #title {
   margin-top: 4vh;
   margin-bottom: 3vh;
