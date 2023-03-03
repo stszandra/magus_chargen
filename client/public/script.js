@@ -1,20 +1,25 @@
 import { data } from "/data.js";
 
+const classSelectElement = document.getElementById("class-second");
+const classInfoButton = document.getElementById("class-infoButton");
+const raceSelectElement = document.getElementById("race-second");
+const raceInfoButton = document.getElementById("race-infoButton");
+const alignmentSelectElement = document.getElementById("alignment-second");
+const alignmentInfoButton = document.getElementById("alignment-infoButton");
+
 const loadEvent = function () {
   //Info buttons are hidden
   for (const element of document.getElementsByClassName("infoButton")) {
     element.style.visibility = "hidden";
   }
-  //Class selection and info button
-  document.getElementById("class-second").insertAdjacentHTML("beforeend", createClassOptions());
-  document.getElementById("class-second").addEventListener("change", addInfoButtonToSelectedClass);
-  document.getElementById("class-infoButton").addEventListener("click", showInfoForSelectedClass);
 
-  //Race selection and info button
-  document.getElementById("class-second").addEventListener("change", createRaceOptions);
+  classSelectElement.insertAdjacentHTML("beforeend", createClassOptions());
+  classSelectElement.addEventListener("change", addInfoButtonToSelectedClass);
+  classInfoButton.addEventListener("click", showInfoForSelectedClass);
 
-  //Alignment selection and info button
-  document.getElementById("race-second").addEventListener("change", createAlignmentOptions);
+  classSelectElement.addEventListener("change", createRaceOptions);
+
+  raceSelectElement.addEventListener("change", createAlignmentOptions);
 };
 
 window.addEventListener("load", loadEvent);
@@ -32,18 +37,18 @@ function createClassOptions() {
 
 //Class options:
 function addInfoButtonToSelectedClass() {
-  if (document.getElementById("class-second").value !== "Choose your class") {
-    document.getElementById("class-infoButton").style.visibility = "visible";
-  } else if (document.getElementById("class-second").value === "Choose your class") {
-    document.getElementById("class-infoButton").style.visibility = "hidden";
+  if (classSelectElement.value !== "Choose your class") {
+    classInfoButton.style.visibility = "visible";
+  } else if (classSelectElement.value === "Choose your class") {
+    classInfoButton.style.visibility = "hidden";
   }
 }
 function showInfoForSelectedClass() {}
 
 //Race options:
 function createRaceOptions() {
-  document.getElementById("race-second").innerHTML = "";
-  const chosenClass = document.getElementById("class-second").value;
+  raceSelectElement.innerHTML = "";
+  const chosenClass = classSelectElement.value;
   let options = `<option>Choose your race</option>`;
 
   data.races.forEach((race) => {
@@ -55,12 +60,12 @@ function createRaceOptions() {
     }
   });
 
-  document.getElementById("race-second").insertAdjacentHTML("beforeend", options);
+  raceSelectElement.insertAdjacentHTML("beforeend", options);
 }
 
 function createAlignmentOptions() {
-  document.getElementById("alignment-second").innerHTML = "";
-  let chosenRace = document.getElementById("race-second").value;
+  alignmentSelectElement.innerHTML = "";
+  let chosenRace = raceSelectElement.value;
   if (chosenRace.charAt(chosenRace.length - 1) === "*") {
     chosenRace = chosenRace.slice(0, chosenRace.length - 2);
   }
@@ -72,5 +77,5 @@ function createAlignmentOptions() {
     }
   });
 
-  document.getElementById("alignment-second").insertAdjacentHTML("beforeend", options);
+  alignmentSelectElement.insertAdjacentHTML("beforeend", options);
 }
