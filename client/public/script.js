@@ -6,13 +6,21 @@ const loadEvent = function () {
     element.style.visibility = "hidden";
   }
   //Class selection and info button
-  document.getElementById("class-second").insertAdjacentHTML("beforeend", createClassOptions());
+  createClassOptions();
   document.getElementById("class-second").addEventListener("change", addInfoButtonToSelectedClass);
   document.getElementById("class-infoButton").addEventListener("click", showInfoForSelectedClass);
 
   //Race selection and info button
+  /*
   document.getElementById("class-second").addEventListener("change", createRaceOptions);
+  $("class-second").on("input", function () {
+    // set the value of the autocomplete field to an empty string
 
+    setTimeout(function () {
+      // set the value of the autocomplete field to an empty string
+      $("input#race-second").val("");
+    }, 100);
+  });*/
   //Alignment selection and info button
   document.getElementById("alignment-second").insertAdjacentHTML("beforeend", createAlignmentOptions());
 };
@@ -20,14 +28,19 @@ const loadEvent = function () {
 window.addEventListener("load", loadEvent);
 
 function createClassOptions() {
-  let options = `<option>Choose your class</option>`;
-  let classNames = data.classes;
-  classNames.forEach((className) => {
-    options += `
-    <option>${className}</option>
-    `;
+  const classNames = [];
+  data.classes.forEach((className) => {
+    classNames.push(className);
   });
-  return options;
+  //JQuery autocomplete field:
+  $("input#class-second")
+    .autocomplete({
+      minLength: 0,
+      source: classNames,
+    })
+    .focus(function () {
+      $(this).autocomplete("search", $(this).val());
+    });
 }
 
 function addInfoButtonToSelectedClass() {
@@ -41,21 +54,49 @@ function addInfoButtonToSelectedClass() {
 function showInfoForSelectedClass() {}
 
 function createRaceOptions() {
+  //document.getElementById("race-second").style.type = "reset";
+  //document.getElementById("race-second").innerHTML = "";
+  //$("input#race-second").attr("value", "");
+  //$("input#race-second").val("");
+  //$("input#race-second").autocomplete("close").val("");
+  const className = document.getElementById("class-second").value;
+  const raceNames = [];
+  data.races.forEach((race) => {
+    if (race.allowedByClasses.allowed.includes(className)) {
+      raceNames.push(race.name);
+    }
+    if (race.allowedByClasses.allowedByDM.includes(className)) {
+      raceNames.push(`${race.name} *`);
+    }
+  });
+
+  $("input#race-second")
+    .autocomplete({
+      minLength: 0,
+      source: raceNames,
+    })
+    .focus(function () {
+      $(this).autocomplete("search", $(this).val());
+    });
+  document.getElementById("race-second").value = "";
+  console.log(document.getElementById("race-second").value);
+  $("input#race-second").focus();
+}
+
+/*function createRaceOptions() {
   document.getElementById("race-second").innerHTML = "";
-  let className = document.getElementById("class-second").value;
+  const className = document.getElementById("class-second").value;
   let options = `<option>Choose your race</option>`;
-  data.racesByClass.forEach((byClass) => {
-    if (className === byClass.byClassName) {
-      byClass.allowedRaces.forEach((race) => {
-        options += `<option>${race}</option>`;
-      });
-      byClass.allowedRacesByDM.forEach((race) => {
-        options += `<option>${race} *</option>`;
-      });
+  data.races.forEach((race) => {
+    if (race.allowedByClasses.allowed.includes(className)) {
+      options += `<option>${race.name}</option>`;
+    }
+    if (race.allowedByClasses.allowedByDM.includes(className)) {
+      options += `<option>${race.name} *</option>`;
     }
   });
   document.getElementById("race-second").insertAdjacentHTML("beforeend", options);
-}
+}*/
 
 function createAlignmentOptions() {
   let options = `<option>Choose your alignment</option>`;

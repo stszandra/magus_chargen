@@ -1,34 +1,33 @@
-import * as fs from 'node:fs';
-import * as http from 'node:http';
-import * as path from 'node:path';
+import * as fs from "node:fs";
+import * as http from "node:http";
+import * as path from "node:path";
 
 const mediaTypes = {
-	"html": "text/html",
-	"jpeg": "image/jpeg",
-	"jpg": "image/jpeg",
-	"png": "image/png",
-	"svg": "image/svg+xml",
-	"json": "application/json",
-	"js": "text/javascript",
-	"css": "text/css",
-	"csv": "text/csv",
-	"mp3": "audio/mpeg",
-	"mp4": "video/mp4",
-	"oga": "audio/ogg",
-	"ogv": "video/ogg",
-	"pdf": "application/pdf",
-	"weba": "audio/webm",
-	"webm": "video/webm",
-	"webp": "image/webp",
-	"woff": "font/woff",
-	"woff2": "font/woff2",
-	"ttf": "font/ttf",
-	"gif": "image/gif"
+  html: "text/html",
+  jpeg: "image/jpeg",
+  jpg: "image/jpeg",
+  png: "image/png",
+  svg: "image/svg+xml",
+  json: "application/json",
+  js: "text/javascript",
+  css: "text/css",
+  csv: "text/csv",
+  mp3: "audio/mpeg",
+  mp4: "video/mp4",
+  oga: "audio/ogg",
+  ogv: "video/ogg",
+  pdf: "application/pdf",
+  weba: "audio/webm",
+  webm: "video/webm",
+  webp: "image/webp",
+  woff: "font/woff",
+  woff2: "font/woff2",
+  ttf: "font/ttf",
+  gif: "image/gif",
 };
 
 const server = http.createServer((req, res) => {
-
-	const errorHTML = `
+  const errorHTML = `
 		
 	<!DOCTYPE html>
 	<html lang="en">
@@ -64,49 +63,49 @@ const server = http.createServer((req, res) => {
 	</html>
 	
 	`;
-	if (req.method === "GET") {
+  if (req.method === "GET") {
+    let filePath =
+      req.url === "/data.js"
+        ? path.resolve(`${process.cwd()}/data.js`)
+        : path.resolve(`${process.cwd()}/client${req.url}`);
 
-		let filePath = req.url === "/data.js" ? path.resolve(`${process.cwd()}/data.js`) : path.resolve(`${process.cwd()}/client${req.url}`);
-	
-		fs.access(filePath, fs.constants.R_OK, (err) => {
-			if (err) {
-				res.statusCode = 404;
-				res.end(errorHTML);
-			} else {
-				if (fs.statSync(filePath).isDirectory()) {
-					filePath += '/index.html';
-				}
-				fs.readFile(filePath, (err, data) => {
-					if (err) {
-						res.statusCode = 500;
-						res.end(errorHTML);
-					} else {
-						let mediaType = mediaTypes[filePath.split('.').pop()];
-	
-						if (!mediaType) {
-							mediaType = 'text/plain';
-						}
-						res.writeHead(200, { "Content-Type": mediaType });
-						res.write(data);
-						res.end();
-					}
-				});
-			}
-		});
+    fs.access(filePath, fs.constants.R_OK, (err) => {
+      if (err) {
+        res.statusCode = 404;
+        res.end(errorHTML);
+      } else {
+        if (fs.statSync(filePath).isDirectory()) {
+          filePath += "/index.html";
+        }
+        fs.readFile(filePath, (err, data) => {
+          if (err) {
+            res.statusCode = 500;
+            res.end(errorHTML);
+          } else {
+            let mediaType = mediaTypes[filePath.split(".").pop()];
 
-	}else if(req.method === "POST" && req.url === "/error"){
-		const chunks = [];
-		req.on('data', chunk => chunks.push(chunk));
-		req.on('end', () => {
-			const data = Buffer.concat(chunks);
-			console.log(data.toString());
-		});
-		res.end();
-	}
-
+            if (!mediaType) {
+              mediaType = "text/plain";
+            }
+            res.writeHead(200, { "Content-Type": mediaType });
+            res.write(data);
+            res.end();
+          }
+        });
+      }
+    });
+  } else if (req.method === "POST" && req.url === "/error") {
+    const chunks = [];
+    req.on("data", (chunk) => chunks.push(chunk));
+    req.on("end", () => {
+      const data = Buffer.concat(chunks);
+      console.log(data.toString());
+    });
+    res.end();
+  }
 });
 
 server.listen(9000, "127.0.0.1", () => {
-	const addr = server.address();
-	console.log(`Open this link in your browser: http://${addr.address}:${addr.port}`);
+  const addr = server.address();
+  console.log(`Open this link in your browser: http://${addr.address}:${addr.port}`);
 });
