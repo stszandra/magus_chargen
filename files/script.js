@@ -24,7 +24,9 @@ function loadEvent() {
   classSelectElement.addEventListener("change", function (event) {
     toggleInfoButton(event, classInfoButton);
   });
-  classInfoButton.addEventListener("click", showInfoForSelectedClass);
+  showInfoForSelectedClass();
+  //$(document).ready(showInfoForSelectedClass);
+  //classInfoButton.addEventListener("click", showInfoForSelectedClass);
   //Race
   classSelectElement.addEventListener("change", createRaceOptions);
   classSelectElement.addEventListener("change", function (event) {
@@ -46,10 +48,10 @@ function loadEvent() {
 //Class options:
 function createClassOptions() {
   let options = `<option>Choose your class</option>`;
-  let classNames = data.classes;
-  classNames.forEach((className) => {
+  let classObjects = data.classes;
+  classObjects.forEach((classObject) => {
     options += `
-    <option>${className}</option>
+    <option>${classObject.name}</option>
     `;
   });
   return options;
@@ -67,7 +69,29 @@ function toggleInfoButton(event, buttonElement) {
   }
 }
 
-function showInfoForSelectedClass() {}
+function showInfoForSelectedClass() {
+  let infoMessage = `<p>No info</p>`;
+
+  $(document).ready(function () {
+    $("#class-infoButton").click(function () {
+      data.classes.forEach((className) => {
+        if (className.name === classSelectElement.value) {
+          infoMessage = `<p>${className.info}</p>`;
+        }
+      });
+      $(infoMessage).dialog({
+        modal: true,
+        title: `${classSelectElement.value}`,
+        buttons: {
+          OK: function () {
+            $(this).dialog("close");
+          },
+        },
+      });
+    });
+  });
+  //console.log(infoMessage);
+}
 
 //Race options:
 function createRaceOptions() {

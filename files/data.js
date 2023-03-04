@@ -1,19 +1,80 @@
 const data = {
   classes: [
-    "Fighter",
-    "Gladiator",
-    "Bounty Hunter",
-    "Knight",
-    "Thief",
-    "Bard",
-    "Priest",
-    "Templar",
-    "Martial Artist",
-    "Samurai",
-    "Witch",
-    "Warlock",
-    "Firemage",
-    "Wizard",
+    {
+      name: "Fighter",
+      info: `You are no mere soldier, even though you've never received the training gladiators and knights do. 
+      Many fighters - like yourself - end up being adventurers, but there are those who prefer working as bodyguards 
+      and it isn't unheard of that even a monarch started out as a simple fighter. Just think about Sullen Chei, 
+      the legendary king of Yllinor, who is probably the fiercest warrior on Ynev. However it isn't only fighting 
+      that you are adept at. Warriors are among the most versatile adventurers. You can do pretty much anything 
+      you set your mind to.`,
+      additionalInfo: ``,
+    },
+    {
+      name: "Gladiator",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Bounty Hunter",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Knight",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Thief",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Bard",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Priest",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Templar",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Martial Artist",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Samurai",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Witch",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Warlock",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Firemage",
+      info: ``,
+      additionalInfo: ``,
+    },
+    {
+      name: "Wizard",
+      info: ``,
+      additionalInfo: ``,
+    },
   ],
   races: [
     {
