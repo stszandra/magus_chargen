@@ -13,6 +13,19 @@ body *::after {
 
 body {
   background-image: url(https://img.freepik.com/free-photo/wooden-floor-background_53876-88628.jpg?w=1060&t=st=1677868908~exp=1677869508~hmac=98adf00f4ebae7adbb8477264799006e8a5d1c4cdb9bae734585ba178a7da8a5);
+  background-attachment: fixed;
+  /*background-repeat: no-repeat;*/
+  background-size: cover;
+  height: 100vh;
+  /*position: relative;*/
+}
+.background {
+  background-image: url(https://img.freepik.com/free-photo/wooden-floor-background_53876-88628.jpg?w=1060&t=st=1677868908~exp=1677869508~hmac=98adf00f4ebae7adbb8477264799006e8a5d1c4cdb9bae734585ba178a7da8a5);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
 }
 
 #title {
@@ -48,7 +61,6 @@ body {
   font-weight: bolder;
   width: 70%;
 }
-
 #name-second::placeholder {
   font-weight: normal;
   color: black;
