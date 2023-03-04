@@ -1,5 +1,4 @@
 const data = {
-  genders: ["male", "female"],
   classes: [
     "Fighter",
     "Gladiator",
