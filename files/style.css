@@ -66,6 +66,12 @@ body {
   color: black;
 }
 
+#gender-first {
+  width: 30%;
+}
+#gender-second {
+  width: 70%;
+}
 .first {
   background-color: rgba(180, 180, 180, 0.7);
   margin-bottom: 0.8vh;

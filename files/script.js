@@ -1,4 +1,5 @@
 const data = {
+  genders: ["male", "female"],
   classes: [
     "Fighter",
     "Gladiator",
@@ -202,13 +203,26 @@ function loadEvent() {
   }
   //Class
   classSelectElement.insertAdjacentHTML("beforeend", createClassOptions());
-  classSelectElement.addEventListener("change", toggleClassInfoButton);
+  classSelectElement.addEventListener("change", function (event) {
+    toggleInfoButton(event, classInfoButton);
+  });
   classInfoButton.addEventListener("click", showInfoForSelectedClass);
   //Race
   classSelectElement.addEventListener("change", createRaceOptions);
+  classSelectElement.addEventListener("change", function (event) {
+    toggleInfoButton(event, raceInfoButton);
+  });
+  raceSelectElement.addEventListener("change", function (event) {
+    toggleInfoButton(event, raceInfoButton);
+  });
   //Alignment
   raceSelectElement.addEventListener("change", createAlignmentOptions);
-  alignmentSelectElement.addEventListener("change", addInfoButtonToSelectedAlignment);
+  raceSelectElement.addEventListener("change", function (event) {
+    toggleInfoButton(event, alignmentInfoButton);
+  });
+  alignmentSelectElement.addEventListener("change", function (event) {
+    toggleInfoButton(event, alignmentInfoButton);
+  });
 }
 
 //Class options:
@@ -223,13 +237,15 @@ function createClassOptions() {
   return options;
 }
 
-function toggleClassInfoButton() {
-  if (classSelectElement.value !== "Choose your class") {
-    classInfoButton.disabled = false;
-    console.log(classInfoButton.disabled);
-  } else if (classSelectElement.value === "Choose your class") {
-    classInfoButton.disabled = true;
-    console.log(classInfoButton.disabled);
+function toggleInfoButton(event, buttonElement) {
+  if (event.target.parentNode.id === buttonElement.parentNode.id) {
+    if (event.target.selectedIndex !== 0) {
+      buttonElement.disabled = false;
+    } else {
+      buttonElement.disabled = true;
+    }
+  } else {
+    buttonElement.disabled = true;
   }
 }
 
