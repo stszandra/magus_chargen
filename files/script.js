@@ -25,8 +25,6 @@ function loadEvent() {
     toggleInfoButton(event, classInfoButton);
   });
   showInfoForSelectedClass();
-  //$(document).ready(showInfoForSelectedClass);
-  //classInfoButton.addEventListener("click", showInfoForSelectedClass);
   //Race
   classSelectElement.addEventListener("change", createRaceOptions);
   classSelectElement.addEventListener("change", function (event) {
@@ -35,6 +33,7 @@ function loadEvent() {
   raceSelectElement.addEventListener("change", function (event) {
     toggleInfoButton(event, raceInfoButton);
   });
+  showInfoForSelectedRace();
   //Alignment
   raceSelectElement.addEventListener("change", createAlignmentOptions);
   raceSelectElement.addEventListener("change", function (event) {
@@ -43,6 +42,7 @@ function loadEvent() {
   alignmentSelectElement.addEventListener("change", function (event) {
     toggleInfoButton(event, alignmentInfoButton);
   });
+  showInfoForSelectedAlignment();
 }
 
 //Class options:
@@ -76,7 +76,7 @@ function showInfoForSelectedClass() {
     $("#class-infoButton").click(function () {
       data.classes.forEach((className) => {
         if (className.name === classSelectElement.value) {
-          infoMessage = `<p>${className.info}</p>`;
+          infoMessage = `<p class="info-box-message">${className.info}</p>`;
         }
       });
       $(infoMessage).dialog({
@@ -90,7 +90,6 @@ function showInfoForSelectedClass() {
       });
     });
   });
-  //console.log(infoMessage);
 }
 
 //Race options:
@@ -111,6 +110,33 @@ function createRaceOptions() {
   raceSelectElement.insertAdjacentHTML("beforeend", options);
 }
 
+function showInfoForSelectedRace() {
+  let infoMessage = `<p>No info</p>`;
+
+  $(document).ready(function () {
+    $("#race-infoButton").click(function () {
+      let chosenRace = raceSelectElement.value;
+      if (chosenRace.charAt(chosenRace.length - 1) === "*") {
+        chosenRace = chosenRace.slice(0, chosenRace.length - 2);
+      }
+      data.races.forEach((raceName) => {
+        if (raceName.name === chosenRace) {
+          infoMessage = `<p class="info-box-message">${raceName.info}</p>`;
+        }
+      });
+      $(infoMessage).dialog({
+        modal: true,
+        title: `${chosenRace}`,
+        buttons: {
+          OK: function () {
+            $(this).dialog("close");
+          },
+        },
+      });
+    });
+  });
+}
+
 //Alignment options:
 function createAlignmentOptions() {
   alignmentSelectElement.innerHTML = "";
@@ -128,4 +154,25 @@ function createAlignmentOptions() {
   alignmentSelectElement.insertAdjacentHTML("beforeend", options);
 }
 
-function addInfoButtonToSelectedAlignment() {}
+function showInfoForSelectedAlignment() {
+  let infoMessage = `<p>No info</p>`;
+
+  $(document).ready(function () {
+    $("#alignment-infoButton").click(function () {
+      data.alignments.forEach((alignmentName) => {
+        if (alignmentName.name === alignmentSelectElement.value) {
+          infoMessage = `<p class="info-box-message">${alignmentName.info}</p>`;
+        }
+      });
+      $(infoMessage).dialog({
+        modal: true,
+        title: `${alignmentSelectElement.value}`,
+        buttons: {
+          OK: function () {
+            $(this).dialog("close");
+          },
+        },
+      });
+    });
+  });
+}

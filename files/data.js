@@ -12,27 +12,39 @@ const data = {
     },
     {
       name: "Gladiator",
-      info: ``,
+      info: `As a gladiator, you have been trained in one-on-one combat. You are a fierce fighter who isn't 
+      afraid of pain and injury. Your special training prepared you for anything that can happen in a combat encounter.`,
       additionalInfo: ``,
     },
     {
       name: "Bounty Hunter",
-      info: ``,
+      info: `You are the perfect assassin. Your whole training, no - even your whole life preapred you for this - 
+      to be no mere murderer, but an artist. You are the perfect mix between a martial artist, a fighter and a thief. 
+      You are agile, fast and hard to notice if you don't want to be. As part of your clan, you must live by strict rules. 
+      If you accept a contract, you have to complete it, no matter what...`,
       additionalInfo: ``,
     },
     {
       name: "Knight",
-      info: ``,
+      info: `Knights are the nobility among fighters. It's possible that someone among the commoners are knighted occasionnaly 
+      but usually being a knight means that you are from noble blood. You have been trained and educated since childhood by 
+      the best of tutors. You are well mannered, somewhat accomplished, professional in heavy combat and you always adhere to 
+      your moral code. Honor and loyalty means everything to you.`,
       additionalInfo: ``,
     },
     {
       name: "Thief",
-      info: ``,
+      info: `Morality and laws don't mean much to you. You live of what you can take from others. You are a well-practiced 
+      robber, pickpocket, burglar, and con artist. Doesn't matter if you are a solo player or part of a clan, your skills 
+      will always come in handy on an adventure.`,
       additionalInfo: ``,
     },
     {
       name: "Bard",
-      info: ``,
+      info: `You are a professional con-artist and you have the perfect arsenal in your hand to get whatever you need. 
+      You are a well trained combatant, but you are just as dangerous with your words. You can convince anyone of 
+      pretty much anything. And we haven't even mentioned your magic... Members of the other sex would do well to avoid you 
+      if they have riches they want to keep. But when you start singing, it can have the most diverse effect on your audience.`,
       additionalInfo: ``,
     },
     {
