@@ -6,50 +6,12 @@ body *::after {
   padding: 0;
   border: 0;
   box-sizing: border-box;
-  text-decoration: none;
   outline: none;
   font-family: inherit;
-}
-ol,
-ul,
-li {
-  list-style: none;
-  display: block;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-a img {
-  border: none;
-}
-
-input,
-textarea,
-select,
-button,
-input {
-  appearance: none;
-  border-radius: 0;
-}
-
-button,
-a {
-  cursor: pointer;
-  color: inherit;
-}
-textarea {
-  resize: none;
-}
-
-[readonly] + span,
-[readonly] {
-  pointer-events: none;
-  opacity: 0.4;
+  font-family: "Papyrus", "fantasy";
 }
 
 body {
-  font-family: "Papyrus", "fantasy";
   background-image: url(https://img.freepik.com/free-photo/wooden-floor-background_53876-88628.jpg?w=1060&t=st=1677868908~exp=1677869508~hmac=98adf00f4ebae7adbb8477264799006e8a5d1c4cdb9bae734585ba178a7da8a5);
 }
 
