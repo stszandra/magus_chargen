@@ -97,6 +97,7 @@ body {
   margin-bottom: 0.8vh;
   padding-left: 0.2vh;
   font-size: 2vh;
+  color: black;
   font-weight: normal;
   text-align: center;
   height: 5vh;
@@ -106,4 +107,11 @@ body {
   border-color: rgb(118, 118, 118);
   border-style: solid;
   overflow: hidden;
+}
+
+.infoButton[disabled],
+.infoButton:disabled {
+  background-color: rgba(180, 180, 180, 0.3);
+  color: rgba(0, 0, 0, 0.5);
+  cursor: not-allowed;
 }
