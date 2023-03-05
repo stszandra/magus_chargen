@@ -4,6 +4,8 @@ let raceSelectElement;
 let raceInfoButton;
 let alignmentSelectElement;
 let alignmentInfoButton;
+let religionSelectElement;
+let religionInfoButton;
 
 window.addEventListener("load", loadEvent);
 
@@ -14,6 +16,8 @@ function loadEvent() {
   raceInfoButton = document.getElementById("race-infoButton");
   alignmentSelectElement = document.getElementById("alignment-second");
   alignmentInfoButton = document.getElementById("alignment-infoButton");
+  religionSelectElement = document.getElementById("religion-second");
+  religionInfoButton = document.getElementById("religion-infoButton");
 
   //All info buttons are disabled
   for (const element of document.getElementsByClassName("infoButton")) {
@@ -43,6 +47,14 @@ function loadEvent() {
     toggleInfoButton(event, alignmentInfoButton);
   });
   showInfoForSelectedAlignment();
+  //Religion
+  alignmentSelectElement.addEventListener("change", createReligionOptions);
+  alignmentSelectElement.addEventListener("change", function (event) {
+    toggleInfoButton(event, religionInfoButton);
+  });
+  religionSelectElement.addEventListener("change", function (event) {
+    toggleInfoButton(event, religionInfoButton);
+  });
 }
 
 //Class options:
@@ -81,6 +93,7 @@ function showInfoForSelectedClass() {
       });
       $(infoMessage).dialog({
         modal: true,
+        width: 500,
         title: `${classSelectElement.value}`,
         buttons: {
           OK: function () {
@@ -126,6 +139,7 @@ function showInfoForSelectedRace() {
       });
       $(infoMessage).dialog({
         modal: true,
+        width: 500,
         title: `${chosenRace}`,
         buttons: {
           OK: function () {
@@ -166,6 +180,7 @@ function showInfoForSelectedAlignment() {
       });
       $(infoMessage).dialog({
         modal: true,
+        width: 500,
         title: `${alignmentSelectElement.value}`,
         buttons: {
           OK: function () {
@@ -175,4 +190,44 @@ function showInfoForSelectedAlignment() {
       });
     });
   });
+}
+
+//Religion options:
+function createReligionOptions() {
+  religionSelectElement.innerHTML = "";
+  let chosenClass = classSelectElement.value;
+  let chosenAlignment = alignmentSelectElement.value;
+  let isItCompatibleWithAlignment = false;
+  let religionOptions = [];
+
+  data.classes.forEach((className) => {
+    if (className.name === chosenClass) {
+      className.allowedReligions.forEach((allowedReligion) => {
+        if (allowedReligion === "Non-Religious") {
+          religionOptions.push(allowedReligion);
+        } else {
+          data.religions.forEach((religion) => {
+            if (religion.name === allowedReligion) {
+              religion.spheres.forEach((sphere) => {
+                if (chosenAlignment.includes(sphere)) {
+                  isItCompatibleWithAlignment = true;
+                }
+              });
+            }
+            if (isItCompatibleWithAlignment === true) {
+              religionOptions.push(allowedReligion);
+              isItCompatibleWithAlignment = false;
+            }
+          });
+        }
+      });
+    }
+  });
+
+  let options = `<option>Choose your religion</option>`;
+
+  religionOptions.forEach((religionOption) => {
+    options += `<option>${religionOption}</option>`;
+  });
+  religionSelectElement.insertAdjacentHTML("beforeend", options);
 }

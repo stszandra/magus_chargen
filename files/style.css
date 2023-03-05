@@ -119,3 +119,16 @@ body {
 .info-box-message {
   font-size: 2.2vh;
 }
+
+/*.ui-dialog,
+.ui-corner-all,
+.ui-widget,
+.ui-widget-content,
+.ui-front,
+.ui-dialog-buttons,
+.ui-dialog-content,
+.ui-draggable,
+.ui-resizable,
+.info-box-message {
+  width: 400px;
+}*/
