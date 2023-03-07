@@ -55,6 +55,9 @@ function loadEvent() {
   religionSelectElement.addEventListener("change", function (event) {
     toggleInfoButton(event, religionInfoButton);
   });
+  showInfoForSelectedReligion();
+  //Age
+  raceSelectElement.addEventListener("change", createSpinnerSelectionForAge);
 }
 
 //Class options:
@@ -62,9 +65,7 @@ function createClassOptions() {
   let options = `<option>Choose your class</option>`;
   let classObjects = data.classes;
   classObjects.forEach((classObject) => {
-    options += `
-    <option>${classObject.name}</option>
-    `;
+    options += `<option>${classObject.name}</option>`;
   });
   return options;
 }
@@ -205,6 +206,8 @@ function createReligionOptions() {
       className.allowedReligions.forEach((allowedReligion) => {
         if (allowedReligion === "Non-Religious") {
           religionOptions.push(allowedReligion);
+        } else if (chosenAlignment === "Order" || chosenAlignment === "Chaos") {
+          religionOptions.push(allowedReligion);
         } else {
           data.religions.forEach((religion) => {
             if (religion.name === allowedReligion) {
@@ -230,4 +233,48 @@ function createReligionOptions() {
     options += `<option>${religionOption}</option>`;
   });
   religionSelectElement.insertAdjacentHTML("beforeend", options);
+}
+
+function showInfoForSelectedReligion() {
+  let infoMessage = `<p>No info</p>`;
+
+  $(document).ready(function () {
+    $("#religion-infoButton").click(function () {
+      let chosenReligion = religionSelectElement.value;
+
+      data.religions.forEach((religion) => {
+        if (religion.name === chosenReligion) {
+          infoMessage = `<p class="info-box-message">${religion.info}</p>`;
+        }
+      });
+      $(infoMessage).dialog({
+        modal: true,
+        width: 500,
+        title: `${chosenReligion}`,
+        buttons: {
+          OK: function () {
+            $(this).dialog("close");
+          },
+        },
+      });
+    });
+  });
+}
+
+function createSpinnerSelectionForAge() {
+  let chosenRace = raceSelectElement.value;
+  let minAge;
+  let maxAge;
+  data.races.forEach((race) => {
+    if (race.name === chosenRace) {
+      console.log(race.age.category1[0]);
+      minAge = race.age.category1[0];
+      maxAge = race.age.category6[0];
+    }
+  });
+  $("#realAge-second").spinner({
+    min: minAge,
+    max: maxAge,
+    step: 1,
+  });
 }

@@ -30,6 +30,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
     {
       name: "Gladiator",
@@ -57,6 +58,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
     {
       name: "Bounty Hunter",
@@ -86,6 +88,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
     {
       name: "Knight",
@@ -115,6 +118,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
     {
       name: "Thief",
@@ -143,6 +147,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
     {
       name: "Bard",
@@ -172,6 +177,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
     {
       name: "Priest",
@@ -181,6 +187,7 @@ const data = {
       The only drawback is, that you can't cast spells without your holy symbol, so you must guard it with your life.`,
       additionalInfo: ``,
       allowedReligions: ["Domvik", "Ranagol", "Arel", "Kyel", "Tharr"],
+      schools: [],
     },
     {
       name: "Templar",
@@ -189,6 +196,7 @@ const data = {
       You are just as good in heavy combat as knights are, the difference is that you've received a very religious upbringing.`,
       additionalInfo: ``,
       allowedReligions: ["Domvik", "Ranagol", "Darton", "Dreina", "Krad", "Uwel"],
+      schools: [],
     },
     {
       name: "Martial Artist",
@@ -219,6 +227,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
     {
       name: "Samurai",
@@ -249,6 +258,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
     {
       name: "Witch",
@@ -280,6 +290,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
     {
       name: "Warlock",
@@ -289,6 +300,7 @@ const data = {
       You are also an adept assassin, and probably know how to brew any kind of poison.`,
       additionalInfo: ``,
       allowedReligions: ["Ranagol", "Darton", "Dreina", "Kyel", "Noir", "Orwella", "Uwel", "Tharr"],
+      schools: [],
     },
     {
       name: "Firemage",
@@ -319,6 +331,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
     {
       name: "Wizard",
@@ -349,6 +362,7 @@ const data = {
         "Sogron",
         "Tharr",
       ],
+      schools: [],
     },
   ],
   races: [
@@ -376,6 +390,14 @@ const data = {
         ],
         allowedByDM: [],
       },
+      age: {
+        category1: [13, 16],
+        category2: [17, 30],
+        category3: [31, 42],
+        category4: [43, 55],
+        category5: [56, 75],
+        category6: [76, undefined],
+      },
     },
     {
       name: "Elf",
@@ -388,6 +410,14 @@ const data = {
         allowed: ["Fighter", "Wizard"],
         allowedByDM: ["Gladiator", "Bounty Hunter", "Bard"],
       },
+      age: {
+        category1: [30, 50],
+        category2: [50, 1400],
+        category3: [1401, 1600],
+        category4: [1601, 1800],
+        category5: [1801, 1900],
+        category6: [1901, undefined],
+      },
     },
     {
       name: "Half-elf",
@@ -398,6 +428,14 @@ const data = {
       allowedByClasses: {
         allowed: ["Fighter", "Gladiator", "Thief", "Bard", "Martial Artist", "Samurai", "Wizard"],
         allowedByDM: ["Bounty Hunter", "Knight", "Witch", "Warlock"],
+      },
+      age: {
+        category1: [16, 22],
+        category2: [23, 110],
+        category3: [111, 130],
+        category4: [131, 150],
+        category5: [151, 170],
+        category6: [171, undefined],
       },
     },
     {
@@ -411,6 +449,14 @@ const data = {
       allowedByClasses: {
         allowed: ["Fighter", "Gladiator", "Thief", "Priest"],
         allowedByDM: ["Wizard"],
+      },
+      age: {
+        category1: [25, 40],
+        category2: [41, 350],
+        category3: [351, 600],
+        category4: [601, 680],
+        category5: [681, 750],
+        category6: [751, undefined],
       },
     },
     {
@@ -428,6 +474,14 @@ const data = {
       allowedByClasses: {
         allowed: ["Fighter", "Gladiator", "Thief", "Warlock"],
         allowedByDM: ["Bounty Hunter", "Priest"],
+      },
+      age: {
+        category1: [15, 19],
+        category2: [20, 120],
+        category3: [121, 200],
+        category4: [201, 230],
+        category5: [231, 260],
+        category6: [261, undefined],
       },
     },
   ],
@@ -518,97 +572,188 @@ const data = {
     {
       name: "Domvik",
       pantheon: null,
-      info: ``,
+      info: `Domvik is the one and only god. The religion originated from Shadon where all the other 
+      religions are persecuted. Domvik teaches us honor, virtues and kindness towards each other. 
+      Every being has the same right for life. Murder is strictly forbidden, only those, who would 
+      endanger our religion can be freed from their sinful lives. This holy act commited by a Domvik priest 
+      is called "Exterminus".`,
       spheres: ["Life", "Soul", "Nature"],
+      priestAbilities: ["Lingua Domini"],
     },
     {
       name: "Ranagol",
       pantheon: null,
-      info: ``,
+      info: `Ranagol, the Ram-headed, is the one and only true god. Both in Gorvik and Krán 
+      Ranagol's is the official religion. He teaches us that intellect comes above all, 
+      feelings are for the weak who let themselves be dragged down by them. You'll probably spend your whole 
+      life fighting against these inferior impulses. The intellectualism of humans (and other races) rises us 
+      above all the intellectually less blessed races. Thus it is our right to use them in any way for our own goals. 
+      Cool logic and efficiency will always be favored by Ranagol.`,
       spheres: ["Death", "Life", "Nature"],
     },
     {
       name: "Adron",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Adron is part of the Pyarronian pantheon. He is the god of magic and light. The Pyarronian religion 
+      is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Soul"],
     },
     {
       name: "Alborne",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Alborne is part of the Pyarronian pantheon. He is the god of music, legends and feasts. The Pyarronian religion 
+      is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Soul"],
     },
     {
       name: "Antoh",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Antoh is part of the Pyarronian pantheon. She is the goddess of water, seas and storms. The Pyarronian religion 
+      is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Nature"],
     },
     {
       name: "Arel",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Arel is part of the Pyarronian pantheon. She is the goddess of war, nature, bravery and wilfulnes. The Pyarronian religion 
+      is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Soul", "Nature"],
     },
     {
       name: "Darton",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Darton is part of the Pyarronian pantheon. He is the god of death, the dead, humor and the afterlife. The Pyarronian religion 
+      is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Death", "Soul"],
     },
     {
       name: "Della",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Della is part of the Pyarronian pantheon. She is the goddess of art. The Pyarronian religion 
+      is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Soul"],
     },
     {
       name: "Dreina",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Dreina is part of the Pyarronian pantheon. She is the goddess of power, order, wealth and loyalty. The Pyarronian religion 
+      is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Death"],
     },
     {
       name: "Ellana",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Ellana is part of the Pyarronian pantheon. She is the goddess of love, beauty, pleasure, lewdness and unfaithfulness. 
+      The Pyarronian religion is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Soul"],
     },
     {
       name: "Gilron",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Gilron is part of the Pyarronian pantheon. He is the god of blacksmiths and craftsmen. 
+      The Pyarronian religion is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Nature"],
     },
     {
       name: "Krad",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Krad is part of the Pyarronian pantheon. He is the god of science, explorers and travelers. 
+      The Pyarronian religion is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Soul"],
     },
     {
       name: "Kyel",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Kyel is part of the Pyarronian pantheon. He is the god of creation, destruction and fate. 
+      The Pyarronian religion is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Death", "Soul"],
     },
     {
       name: "Noir",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Noir is part of the Pyarronian pantheon. She is the goddess of dreams, cheating, games and bets. 
+      The Pyarronian religion is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Death"],
     },
     {
       name: "Orwella",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Orwella used to be part of the Pyarronian pantheon but she was exiled. 
+      She is the evil goddess of plagues, hexes and curses. Nowadays both she and all her believers 
+      are persecuted by the followers of the other pyarronian gods and goddesses. 
+      They think it is their sacred duty to destroy anything that has to do with Orwella, so you better watch your back.`,
       spheres: ["Death"],
     },
     {
       name: "Uwel",
       pantheon: "Pyarron",
-      info: ``,
+      info: `Uwel is part of the Pyarronian pantheon. He is the god of revenge, justice and pain. 
+      The Pyarronian religion is the most widely revered religion all over Ynev. Probably because its gods are so human centric. 
+      And because there are so many gods and goddesses in the pantheon that probably everyone can find 
+      his or her favourite one. The pantheon's gods teach us not to kill for our personal gain, 
+      to respect our elders and superiors, to be patient towards each other, that knowledge in all its forms is sacred, 
+      and to try to enjoy life and gain riches. The only exception is Orwella the exiled goddess and her followers. 
+      It is your sacred duty to destroy them.`,
       spheres: ["Life", "Death", "Soul"],
     },
     {

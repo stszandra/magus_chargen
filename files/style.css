@@ -119,16 +119,57 @@ body {
 .info-box-message {
   font-size: 2.2vh;
 }
-
-/*.ui-dialog,
-.ui-corner-all,
-.ui-widget,
-.ui-widget-content,
-.ui-front,
-.ui-dialog-buttons,
-.ui-dialog-content,
-.ui-draggable,
-.ui-resizable,
-.info-box-message {
-  width: 400px;
-}*/
+.spinner-second {
+  background-color: rgba(180, 180, 180, 0.7);
+  margin-bottom: 0.8vh;
+  padding: 0px;
+  font-size: 2.9vh;
+  font-family: "Papyrus", "fantasy";
+  text-align: center;
+  height: 5vh;
+  width: 40%;
+  float: none;
+  border: 0.3px;
+  border-color: rgb(118, 118, 118);
+  border-style: solid;
+}
+.ui-spinner {
+  margin-bottom: 0.8vh;
+  width: 40%;
+  background-color: rgba(180, 180, 180, 0);
+  color: black;
+  vertical-align: sub;
+}
+.ui-widget select .ui-spinner input {
+  font-family: "Papyrus", "fantasy";
+  width: 100%;
+}
+.ui-button {
+  background-color: rgba(180, 180, 180, 0);
+  border: 0px;
+  color: black;
+}
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+  font-family: "Papyrus", "fantasy";
+  font-size: 2.9vh;
+  margin: 0px;
+  width: 100%;
+  border-color: rgb(118, 118, 118);
+  border-style: solid;
+}
+.spinner-third {
+  background-color: rgba(180, 180, 180, 0.7);
+  margin-bottom: 0.8vh;
+  font-size: 2.9vh;
+  font-family: "Papyrus", "fantasy";
+  text-align: center;
+  height: 5vh;
+  width: 30%;
+  float: right;
+  border: 0.3px;
+  border-color: rgb(118, 118, 118);
+  border-style: solid;
+}

@@ -12,8 +12,6 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
-
-    <link rel="stylesheet" href="./files/style.css" />
     <script type="text/javascript" src="./files/data.js"></script>
     <script type="text/javascript" src="./files/script.js"></script>
     <!--JQuery start-->
@@ -21,6 +19,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <!--JQuery end-->
+    <!--I need to link my CSS file after the JQuery CSS so it won't overwrite all my JQuery related styles.-->
+    <link rel="stylesheet" href="./files/style.css" />
   </head>
   <body>
     <div id="title">
@@ -54,18 +54,19 @@
         <select id="religion-second" class="second"></select>
         <button id="religion-infoButton" class="infoButton" type="button">More info</button>
       </div>
-      <div id="nationality">
-        <div>Country of origin:</div>
-        <div></div>
-      </div>
       <div id="school">
         <div>School:</div>
         <div></div>
       </div>
-      <div id="real-age">
-        <div>Real age:</div>
+      <div id="nationality">
+        <div>Country of origin:</div>
         <div></div>
       </div>
+      <form id="realAge">
+        <div id="realAge-first" class="first">Real age:</div>
+        <input id="realAge-second" class="spinner-second" type="text" placeholder="Character's age" />
+        <div id="realAge-third" class="spinner-third"></div>
+      </form>
       <div id="apparent-age">
         <div>Apparent age:</div>
         <div></div>
