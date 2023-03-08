@@ -6,6 +6,7 @@ let alignmentSelectElement;
 let alignmentInfoButton;
 let religionSelectElement;
 let religionInfoButton;
+let ageSelectElement;
 
 window.addEventListener("load", loadEvent);
 
@@ -18,6 +19,7 @@ function loadEvent() {
   alignmentInfoButton = document.getElementById("alignment-infoButton");
   religionSelectElement = document.getElementById("religion-second");
   religionInfoButton = document.getElementById("religion-infoButton");
+  ageSelectElement = document.getElementById("#realAge-second");
 
   //All info buttons are disabled
   for (const element of document.getElementsByClassName("infoButton")) {
@@ -57,7 +59,9 @@ function loadEvent() {
   });
   showInfoForSelectedReligion();
   //Age
-  raceSelectElement.addEventListener("change", createSpinnerSelectionForAge);
+  insertSpinnerForAge();
+  raceSelectElement.addEventListener("change", setValuesOfAgeSpinner);
+  validateRealAge();
 }
 
 //Class options:
@@ -85,23 +89,21 @@ function toggleInfoButton(event, buttonElement) {
 function showInfoForSelectedClass() {
   let infoMessage = `<p>No info</p>`;
 
-  $(document).ready(function () {
-    $("#class-infoButton").click(function () {
-      data.classes.forEach((className) => {
-        if (className.name === classSelectElement.value) {
-          infoMessage = `<p class="info-box-message">${className.info}</p>`;
-        }
-      });
-      $(infoMessage).dialog({
-        modal: true,
-        width: 500,
-        title: `${classSelectElement.value}`,
-        buttons: {
-          OK: function () {
-            $(this).dialog("close");
-          },
+  $("#class-infoButton").click(function () {
+    data.classes.forEach((className) => {
+      if (className.name === classSelectElement.value) {
+        infoMessage = `<p class="info-box-message">${className.info}</p>`;
+      }
+    });
+    $(infoMessage).dialog({
+      modal: true,
+      width: 500,
+      title: `${classSelectElement.value}`,
+      buttons: {
+        OK: function () {
+          $(this).dialog("close");
         },
-      });
+      },
     });
   });
 }
@@ -127,27 +129,25 @@ function createRaceOptions() {
 function showInfoForSelectedRace() {
   let infoMessage = `<p>No info</p>`;
 
-  $(document).ready(function () {
-    $("#race-infoButton").click(function () {
-      let chosenRace = raceSelectElement.value;
-      if (chosenRace.charAt(chosenRace.length - 1) === "*") {
-        chosenRace = chosenRace.slice(0, chosenRace.length - 2);
+  $("#race-infoButton").click(function () {
+    let chosenRace = raceSelectElement.value;
+    if (chosenRace.charAt(chosenRace.length - 1) === "*") {
+      chosenRace = chosenRace.slice(0, chosenRace.length - 2);
+    }
+    data.races.forEach((raceName) => {
+      if (raceName.name === chosenRace) {
+        infoMessage = `<p class="info-box-message">${raceName.info}</p>`;
       }
-      data.races.forEach((raceName) => {
-        if (raceName.name === chosenRace) {
-          infoMessage = `<p class="info-box-message">${raceName.info}</p>`;
-        }
-      });
-      $(infoMessage).dialog({
-        modal: true,
-        width: 500,
-        title: `${chosenRace}`,
-        buttons: {
-          OK: function () {
-            $(this).dialog("close");
-          },
+    });
+    $(infoMessage).dialog({
+      modal: true,
+      width: 500,
+      title: `${chosenRace}`,
+      buttons: {
+        OK: function () {
+          $(this).dialog("close");
         },
-      });
+      },
     });
   });
 }
@@ -172,23 +172,21 @@ function createAlignmentOptions() {
 function showInfoForSelectedAlignment() {
   let infoMessage = `<p>No info</p>`;
 
-  $(document).ready(function () {
-    $("#alignment-infoButton").click(function () {
-      data.alignments.forEach((alignmentName) => {
-        if (alignmentName.name === alignmentSelectElement.value) {
-          infoMessage = `<p class="info-box-message">${alignmentName.info}</p>`;
-        }
-      });
-      $(infoMessage).dialog({
-        modal: true,
-        width: 500,
-        title: `${alignmentSelectElement.value}`,
-        buttons: {
-          OK: function () {
-            $(this).dialog("close");
-          },
+  $("#alignment-infoButton").click(function () {
+    data.alignments.forEach((alignmentName) => {
+      if (alignmentName.name === alignmentSelectElement.value) {
+        infoMessage = `<p class="info-box-message">${alignmentName.info}</p>`;
+      }
+    });
+    $(infoMessage).dialog({
+      modal: true,
+      width: 500,
+      title: `${alignmentSelectElement.value}`,
+      buttons: {
+        OK: function () {
+          $(this).dialog("close");
         },
-      });
+      },
     });
   });
 }
@@ -238,43 +236,64 @@ function createReligionOptions() {
 function showInfoForSelectedReligion() {
   let infoMessage = `<p>No info</p>`;
 
-  $(document).ready(function () {
-    $("#religion-infoButton").click(function () {
-      let chosenReligion = religionSelectElement.value;
+  $("#religion-infoButton").click(function () {
+    let chosenReligion = religionSelectElement.value;
 
-      data.religions.forEach((religion) => {
-        if (religion.name === chosenReligion) {
-          infoMessage = `<p class="info-box-message">${religion.info}</p>`;
-        }
-      });
-      $(infoMessage).dialog({
-        modal: true,
-        width: 500,
-        title: `${chosenReligion}`,
-        buttons: {
-          OK: function () {
-            $(this).dialog("close");
-          },
+    data.religions.forEach((religion) => {
+      if (religion.name === chosenReligion) {
+        infoMessage = `<p class="info-box-message">${religion.info}</p>`;
+      }
+    });
+    $(infoMessage).dialog({
+      modal: true,
+      width: 500,
+      title: `${chosenReligion}`,
+      buttons: {
+        OK: function () {
+          $(this).dialog("close");
         },
-      });
+      },
     });
   });
 }
 
-function createSpinnerSelectionForAge() {
+//Age selection:
+function insertSpinnerForAge() {
+  $("#realAge-second").spinner({ step: 1 });
+}
+
+function setValuesOfAgeSpinner() {
   let chosenRace = raceSelectElement.value;
   let minAge;
   let maxAge;
   data.races.forEach((race) => {
     if (race.name === chosenRace) {
-      console.log(race.age.category1[0]);
       minAge = race.age.category1[0];
       maxAge = race.age.category6[0];
     }
   });
-  $("#realAge-second").spinner({
-    min: minAge,
-    max: maxAge,
-    step: 1,
-  });
+  $("#realAge-second").spinner("value", minAge);
+  $("#realAge-second").spinner("option", "min", minAge);
+  $("#realAge-second").spinner("option", "max", maxAge);
+}
+
+function validateRealAge() {
+  let chosenAge;
+  $("#realAge-second")
+    .spinner({
+      spin: function (event, ui) {
+        // Update the input value and trigger the events
+        $(this).val(ui.value).trigger("change").trigger("spinchange");
+      },
+    })
+    .on("spinchange", function () {
+      //console.log("Spinner value changed to " + $(this).spinner("value"));
+      chosenAge = $(this).spinner("value");
+      console.log(chosenAge);
+    });
+  /*.on("input", function () {
+      // Trigger the events when the user types into the input field
+      $(this).trigger("change").trigger("spinchange");
+    });*/
+  //No good, because when I type 14, the value is at first 1, then its 14, so it will be useless for validation.
 }
