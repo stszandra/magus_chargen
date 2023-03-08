@@ -7,6 +7,8 @@ let alignmentInfoButton;
 let religionSelectElement;
 let religionInfoButton;
 let ageSelectElement;
+let minAge;
+let maxAge;
 
 window.addEventListener("load", loadEvent);
 
@@ -264,8 +266,6 @@ function insertSpinnerForAge() {
 
 function setValuesOfAgeSpinner() {
   let chosenRace = raceSelectElement.value;
-  let minAge;
-  let maxAge;
   data.races.forEach((race) => {
     if (race.name === chosenRace) {
       minAge = race.age.category1[0];
@@ -287,9 +287,37 @@ function validateRealAge() {
       },
     })
     .on("spinchange", function () {
-      //console.log("Spinner value changed to " + $(this).spinner("value"));
       chosenAge = $(this).spinner("value");
-      console.log(chosenAge);
+      if (chosenAge < minAge) {
+        $("#realAge-second").spinner("value", minAge);
+        const infoMessage = `<p>You can't be younger than ${minAge} if you want to survive your first real combat encounter.</p>`;
+        //const infoMessage = "You can't be that young!";
+        $(infoMessage).dialog({
+          modal: true,
+          width: 400,
+          title: "Invalid age!",
+          buttons: {
+            OK: function () {
+              $(this).dialog("close");
+            },
+          },
+        });
+      }
+      if (chosenAge > maxAge) {
+        $("#realAge-second").spinner("value", maxAge);
+        const infoMessage = `<p>You can't be older than ${maxAge} if you still want to actively partake in combat encounters.</p>`;
+        //const infoMessage = "You can't be that old!";
+        $(infoMessage).dialog({
+          modal: true,
+          width: 400,
+          title: "Invalid age!",
+          buttons: {
+            OK: function () {
+              $(this).dialog("close");
+            },
+          },
+        });
+      }
     });
   /*.on("input", function () {
       // Trigger the events when the user types into the input field
